@@ -18,10 +18,16 @@ class BaseQueryClass(generics.RetrieveAPIView):
 
 
 class UsersList(generics.ListAPIView, BaseQueryClass):
+    """
+    GET all users from database
+    """
     pass
 
 
 class UsersDetail(BaseQueryClass):
+    """
+    GET a single user from database
+    """
     pass
 
 
@@ -32,7 +38,7 @@ class UsersSoftDelete(generics.RetrieveDestroyAPIView):
 
     def destroy(self, request, *args, **kwargs):
         """
-        Deactivates the user`s account
+        Deactivates a user account
         """
         current = self.get_object()
         current.is_active = False
@@ -50,7 +56,7 @@ class UsersRestore(generics.RetrieveUpdateDestroyAPIView):
 
     def patch(self, request, *args, **kwargs):
         """
-        Activates the user accounts after it has been deactivated
+        Activates a user accounts after it has been deactivated
         """
         current = self.get_object()
         current.is_active = True
